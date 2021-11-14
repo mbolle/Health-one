@@ -1,0 +1,28 @@
+body {
+    background-color: gainsboro
+}
+
+.container {
+    background-color: white;
+}
+
+.pull-right img-thumbnail {
+    margin-top: -10px;
+    margin-bottom: 10px
+}
+
+.header-row {
+    margin-top: 20px
+}
+
+.banner-img {
+    margin-bottom: 20px
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.product-img {
+    width: 70%;
+}

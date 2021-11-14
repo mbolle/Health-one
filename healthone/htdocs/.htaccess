@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteRule ^categories/([0-9]+)/?$ /public/index.php?category_id=$1    [NC,L]    # Handle category requests
+RewriteRule ^categories/([0-9]+)/product/([0-9]+)?$ /public/index.php?category_id=$1&product_id=$2    [NC,L]    # Handle product requests
+
+# Rewrite all the default paths to public e.g. /css/style.css -> /public/css/style.css
+RewriteCond %{REQUEST_URI} !/public
+RewriteRule ^(.*)$ public/$1 [L]
+
+# Rewrite all the files to index.php /random -> /public/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /public/index.php [NC,L,QSA]
+
