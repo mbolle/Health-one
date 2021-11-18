@@ -29,7 +29,7 @@ switch ($params[1]) {
                     $reviews = getReviews($productId);
                 }
                 // Specific equipment in the category
-                include_once "../Templates/sportapparaat_detail.php";
+                include_once "../Templates/sportapparaten_detail.php";
             } else {
                 // All equipment in the category
                 include_once "../Templates/sportapparaat.php";
@@ -40,6 +40,7 @@ switch ($params[1]) {
             include_once "../Templates/categories.php";
         }
         break;
+
     case 'contact';
         $times = getTime();
         include_once '../Templates/contact.php';

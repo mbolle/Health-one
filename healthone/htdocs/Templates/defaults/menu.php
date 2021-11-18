@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/home">
+        <a class="navbar-brand" href="../home.php">
             Sportcenter
         </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
                     <a class="nav-link"  href="#">registreren</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">contact</a>
+                    <a class="nav-link" href="/contact">contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">

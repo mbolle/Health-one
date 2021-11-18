@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <?php
 global $times;
 include_once('defaults/head.php');

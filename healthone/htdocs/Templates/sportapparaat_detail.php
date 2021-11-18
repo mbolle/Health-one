@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <?php
 include_once('defaults/head.php');
 global $product;
