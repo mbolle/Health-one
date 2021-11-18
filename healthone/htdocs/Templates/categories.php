@@ -26,7 +26,7 @@ global $categories
             <div class="col-sm-4 col-md-3">
                 <div class="card">
                     <div class="card-body text-center">
-                        <a href="/categories/<?= $category->id ?>">
+                        <a href="/category/<?= $category->id ?>">
                             <img class="product-img img-responsive center-block" src="<?= $category->picture ?>" alt="image">
                         </a>
                         <div class="card-title mb-3"><?= $category->name ?></div>
