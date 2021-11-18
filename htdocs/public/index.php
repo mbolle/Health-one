@@ -3,6 +3,7 @@ require '../Modules/Categories.php';
 require '../Modules/Products.php';
 require '../Modules/Database.php';
 require '../Modules/Contact.php';
+require '../Modules/Review.php';
 
 $request = $_SERVER['REQUEST_URI'];
 $params = explode("/", $request);
@@ -35,8 +36,12 @@ switch ($params[1]) {
         if (isset($_GET['id'])) {
             $productId = $_GET['id'];
             $product = getProduct($productId);
-            $name = getCategoryName($product->category_id);
             $titleSuffix = ' | ' . $product->name;
+            $name = getCategoryName($product->category_id);
+            $reviewGiven = ['result' => NULL, 'message' => ''];
+            if (isset($_POST['form-sort']) && $_POST['form-sort'] === 'review') {
+                $reviewGiven = postReview($productId);
+            }
             include_once "../Templates/sportapparaat_detail.php";
         }else{
             $titleSuffix = ' | Home';

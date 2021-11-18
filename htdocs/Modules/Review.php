@@ -3,8 +3,8 @@ function postReview(int $productId){
     global $pdo;
     $productCheck = $_POST['product_id'];
     if (interval($productCheck) === $productId){
-        $query = $pdo->prepare('INSERT INTO reviews(product_id, username, rating, description)
-                                      VALUES (:product_id, :username, :rating, :description)');
+        $query = $pdo->prepare('INSERT INTO reviews(product_id, name, rating, description)
+                                      VALUES (:product_id, :name, :rating, :description)');
 
         $product_id = filter_input(INPUT_POST,'product_id',FILTER_SANITIZE_NUMBER_INT);
         $rating = filter_input(INPUT_POST,'rating',FILTER_SANITIZE_NUMBER_INT);
