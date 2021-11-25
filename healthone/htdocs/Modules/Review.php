@@ -2,7 +2,7 @@
 function postReview(int $productId){
     global $pdo;
     $productCheck = $_POST['product_id'];
-    if (interval($productCheck) === $productId){
+    if (intval($productCheck) === $productId){
         $query = $pdo->prepare('INSERT INTO reviews(product_id, name, rating, description)
                                       VALUES (:product_id, :name, :rating, :description)');
 
