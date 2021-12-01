@@ -51,7 +51,8 @@ switch ($params[1]) {
 
 
     case 'contact':
-        $titleSuffix = ' | Home';
+        $titleSuffix = ' | Contact';
+        $times = getTimes();
         include_once "../Templates/contact.php";
         break;
 
