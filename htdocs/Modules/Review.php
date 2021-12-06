@@ -1,5 +1,6 @@
 <?php
-function postReview(int $productId){
+function postReview(int $productId)
+{
     global $pdo;
     $productCheck = $_POST['product_id'];
     if (intval($productCheck) === $productId){
@@ -8,13 +9,13 @@ function postReview(int $productId){
 
         $product_id = filter_input(INPUT_POST,'product_id',FILTER_SANITIZE_NUMBER_INT);
         $rating = filter_input(INPUT_POST,'rating',FILTER_SANITIZE_NUMBER_INT);
-        $name = filter_input(INPUT_POST,'product_id',FILTER_SANITIZE_STRING);
-        $description = filter_input(INPUT_POST,'product_id',FILTER_SANITIZE_STRING);
+        $name = filter_input(INPUT_POST,'name',FILTER_SANITIZE_STRING);
+        $description = filter_input(INPUT_POST,'reviewtext',FILTER_SANITIZE_STRING);
 
         $query->bindParam(':product_id', $product_id,PDO::PARAM_INT);
-        $query->bindParam(':rating', $product_id,PDO::PARAM_INT);
-        $query->bindParam(':name', $product_id,PDO::PARAM_STR);
-        $query->bindParam(':description', $product_id,PDO::PARAM_STR);
+        $query->bindParam(':rating', $rating,PDO::PARAM_INT);
+        $query->bindParam(':name', $name,PDO::PARAM_STR);
+        $query->bindParam(':description', $description,PDO::PARAM_STR);
         $query->execute();
 
         $_POST = [];

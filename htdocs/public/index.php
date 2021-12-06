@@ -8,7 +8,7 @@ require '../Modules/Database.php';
 require '../Modules/Contact.php';
 
 session_start();
-var_dump($_SESSION);
+//var_dump($_SESSION);
 
 $request = $_SERVER['REQUEST_URI'];
 $params = explode("/", $request);
@@ -41,9 +41,9 @@ switch ($params[1]) {
         if (isset($_GET['id'])) {
             $productId = $_GET['id'];
             $product = getProduct($productId);
-            $titleSuffix = ' | ' . $product->name;
             $name = getCategoryName($product->category_id);
-            $reviewGiven = ['result' => NULL, 'message' => ''];
+            $titleSuffix = ' | ' . $product->name;
+           // $reviewGiven = ['result' => NULL, 'message' => ''];
             if (isset($_POST['form-sort']) && $_POST['form-sort'] === 'review') {
                 $reviewGiven = postReview($productId);
             }
