@@ -23,7 +23,7 @@ include_once('defaults/head.php');
         <input type="password" name="password" class="form-control" id="example2">
     </div>
 
-    <button type="submit" name="login" class="btn btn-primary">Submit</button>
+    <button type="submit" name="login" class="btn btn-warning">Submit</button>
 </form>
 
 <?php
