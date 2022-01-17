@@ -59,6 +59,8 @@ global $reviewGiven;
                 </option>
                 <?php endfor; ?>
             </select>
+            <br>
+            <textarea name="description" rows="3"></textarea>
         </div>
         <div class=" mt-3">
              <button type="submit" name="verzenden" class="form-group btn btn-outline-primary">verstuur je review</button>
