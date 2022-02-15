@@ -55,7 +55,7 @@ switch ($params[1]) {
         break;
 
     case 'admin':
-        include_once ('admin.php');
+        include_once ('../templates/admin/admin_home.php');
         break;
 
     case 'login':
@@ -66,7 +66,7 @@ switch ($params[1]) {
 
             switch ($result){
                 case 'ADMIN':
-                    header("Location: ../Templates/admin/home.php.php");
+                    header("Location: /admin");
                     break;
                 case 'MEMBER':
                 case 'FAILURE':
