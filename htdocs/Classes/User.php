@@ -9,7 +9,7 @@ class User
   public $last_name;
   public $role;
 
-  public function _construct()
+  public function __construct()
   {
     settype($this->id, 'integer');
   }

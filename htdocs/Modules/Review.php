@@ -4,7 +4,7 @@ function postReview(int $productId)
     global $pdo;
     $productCheck = $_POST['product_id'];
     if (intval($productCheck) === $productId){
-        $query = $pdo->prepare('INSERT INTO reviews(product_id, name, rating,  description);
+        $query = $pdo->prepare('INSERT INTO reviews (product_id, name, rating,  description)
                                       VALUES (:product_id, :name, :rating, :description)');
 
         $product_id = filter_input(INPUT_POST,'product_id',FILTER_SANITIZE_NUMBER_INT);
@@ -16,6 +16,7 @@ function postReview(int $productId)
         $query->bindParam(':rating', $rating,PDO::PARAM_INT);
         $query->bindParam(':name', $name,PDO::PARAM_STR);
         $query->bindParam(':description', $description,PDO::PARAM_STR);
+
         $query->execute();
 
         $_POST = [];

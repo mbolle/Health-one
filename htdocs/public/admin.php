@@ -5,6 +5,7 @@ include_once('../Classes/Category.php');
 include_once('../Classes/Time.php');
 include_once('../Classes/Review.php');
 
+require_once('../Modules/Categories.php');
 require_once('../Modules/Contact.php');
 require_once '../Modules/Database.php';
 require_once('../Modules/Products.php');
@@ -15,40 +16,42 @@ require_once('../Modules/Review.php');
 global $params;
 $products=getProductsToDisplay();
 
-if(isset($params[1]) && empty($params[2])){
-    if($params[1]=='admin'){
+var_dump($params);
 
-        include_once ('../Templates/admin/admin_home.php');
+switch ($params[2]) {
+    case 'products':
+        $products = getProductsToDisplay();
+        include_once ('../Templates/admin/admin_products.php');
+        break;
+    default:
+        // User wants to change password
         if(isset($_POST['change'])){
             $toControlPassword=filter_input(INPUT_POST,'old-password',FILTER_SANITIZE_STRING);
             $newPassword=filter_input(INPUT_POST,'new-password',FILTER_SANITIZE_STRING);
-            $userId=$_SESSION['user'][0]->id;
+            $userId=$_SESSION['user']->id;
             if(!empty($toControlPassword) && !empty($newPassword)){
-                if($toControlPassword==$_SESSION['user'][0]->password){
+                if ($toControlPassword==$_SESSION['user']->password) {
                     $changePassword=changePassword($userId,$newPassword);
                     sleep(0.4);
                     echo "<script>alert('Uw wachtwoord is succesvol gewijzegd')</script>";
-                }
-                else{
+                } else{
                     echo "<script>alert('Uw wachtwoord is niet correct')</script>";
                 }
-            }
-            else{
+            } else{
                 echo "<script>alert('Niet Alle velden zijn ingevuld')</script>";
             }
-
         }
+        include_once ('../Templates/admin/admin_home.php');
+        break;
+}
+die();
+if(isset($params[1]) && empty($params[2])){
+    if($params[1]=='admin'){
+        include_once ('../Templates/admin/admin_home.php');
+
     }
 }
 
-if(isset($params[2]) && empty($params[3])){
-    if($params[2]=='management'){
-        include_once ('../Templates/admin/admin_products.php');
-    }
-    if($params[2]=='display'){
-        include_once ('../Templates/admin/admin_products.php');
-    }
-}
 
 if(isset($params[3])){
     switch ($params[3]){
@@ -57,17 +60,13 @@ if(isset($params[3])){
             if(isset($_POST['submit'])){
                 $toInsertProductName=filter_input(INPUT_POST,'product-name',FILTER_SANITIZE_STRING);
                 $toInsertProductCategoryId=filter_input(INPUT_POST,'category',FILTER_SANITIZE_NUMBER_INT);
-                $toInsertProductIngredients=filter_input(INPUT_POST,'ingredients',FILTER_SANITIZE_STRING);
                 $toInsertProductDescription=filter_input(INPUT_POST,'description',FILTER_SANITIZE_STRING);
                 $toInsertProductPicture=filter_input(INPUT_POST,'picture');
-                $toInsertProductPrice=filter_input(INPUT_POST,'price',FILTER_SANITIZE_NUMBER_FLOAT);
                 if(!empty($toInsertProductName) &&
                     !empty($toInsertProductCategoryId) &&
-                    !empty($toInsertProductIngredients) &&
                     !empty($toInsertProductDescription) &&
-                    !empty($toInsertProductPicture) &&
-                    !empty($toInsertProductPrice)){
-                    $toInsertProduct=addProduct($toInsertProductName,$toInsertProductCategoryId,$toInsertProductIngredients,$toInsertProductDescription,$toInsertProductPicture,$toInsertProductPrice);
+                    !empty($toInsertProductPicture)){
+                    $toInsertProduct=addProduct($toInsertProductName,$toInsertProductCategoryId,$toInsertProductDescription,$toInsertProductPicture);
                 }
                 else{
                     echo "<script>alert('Niet Alle velden zijn ingevuld! probeer nog een keer')</script>";
@@ -87,6 +86,7 @@ if(isset($params[3])){
             }
             include_once ('../Templates/admin/deleteProduct.php');
             break;
+
         case 'update':
             $toUpdateProductId=$params[4];
 
@@ -98,10 +98,8 @@ if(isset($params[3])){
                 $toUpdateProductPrice=filter_input(INPUT_POST,'price',FILTER_SANITIZE_NUMBER_FLOAT);
                 if(!empty($toUpdateProductName)&&
                     !empty($toUpdateProductCategoryId)&&
-                    !empty($toUpdateProductIngredients)&&
-                    !empty($toUpdateProductDescription)&&
-                    !empty($toUpdateProductPrice)){
-                    $toUpdateProduct=updateProduct($toUpdateProductName,$toUpdateProductCategoryId,$toUpdateProductIngredients,$toUpdateProductDescription,$toUpdateProductPrice,$toUpdateProductId);
+                    !empty($toUpdateProductDescription)){
+                    $toUpdateProduct=updateProduct($toUpdateProductName,$toUpdateProductCategoryId,$toUpdateProductDescription,$toUpdateProductId);
                     header("Location: /admin/admin_product");
                 }
                 else{

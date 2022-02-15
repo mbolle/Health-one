@@ -9,10 +9,12 @@ $categories=getCategories();
 $product=getProduct($toUpdateProductId);
 ?>
 <body>
-<?php
-include_once (TEMPLATE_ROOT. 'admin_defaults/admin_menu.php');
-?>
 <main class='container'>
+<?php
+include_once ('admin_defaults/admin_header.php');
+include_once ('admin_defaults/admin_menu.php');
+?>
+
     <h1 class="text-danger">Update Product</h1>
     <form method="post">
         <label>Naam:</label><br>

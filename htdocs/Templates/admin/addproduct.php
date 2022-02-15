@@ -2,14 +2,17 @@
 <html lang="en">
 <?php
 include_once('admin_defaults/admin_head.php');
-require_once ('../../Modules/categories.php');
+require_once ('../../Modules/Categories.php');
 $categories=getCategories();
 ?>
+
 <body>
+<main class='container'>
 <?php
+include_once ('admin_defaults/admin_header.php');
 include_once ('admin_defaults/admin_menu.php');
 ?>
-<main class='container'>
+
     <h1 class="text-primary">Product toevoegen</h1>
     <form method="post">
         <label>Naam:</label><br>

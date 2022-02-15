@@ -4,10 +4,11 @@
 include_once('admin_defaults/admin_head.php');
 ?>
 <body>
+<main class='container'>
 <?php
+include_once ('admin_defaults/admin_header.php');
 include_once ('admin_defaults/admin_menu.php');
 ?>
-<main class='container'>
     <h1 class="text-danger">Delete Product</h1>
     <form method="post">
         <p>Weet u zeker dat u het product wilt verwijderen?</p><br>

@@ -8,12 +8,14 @@ require '../Modules/Database.php';
 require '../Modules/Contact.php';
 
 session_start();
-//var_dump($_SESSION);
-
 $request = $_SERVER['REQUEST_URI'];
 $params = explode("/", $request);
 $title = "HealthOne";
 $titleSuffix = "";
+$loggedInUser = false;
+if (isset($_SESSION['user'])) {
+    $loggedInUser = $_SESSION['user'];
+}
 
 switch ($params[1]) {
     case 'categories':
@@ -55,15 +57,17 @@ switch ($params[1]) {
         break;
 
     case 'admin':
-        include_once ('../templates/admin/admin_home.php');
+        include_once ('admin.php');
         break;
 
     case 'login':
-
+        if (isset($logedInUser)) {
+            header("Location: /admin");
+            die();
+        }
         $titleSuffix = ' | Login';
         if (isset($_POST['login'])){
             $result = checkLogin();
-
             switch ($result){
                 case 'ADMIN':
                     header("Location: /admin");
@@ -81,6 +85,9 @@ switch ($params[1]) {
         }
         else {
             include_once "../Templates/login.php";
+        }
+        if (isset($_POST['user'])){
+            session_destroy();
         }
         break;
 

@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 <?php
-include_once('admin_defaults/admin_head.php');
-include_once ('admin_defaults/admin_menu.php');
-require_once ('../../Modules/products.php');
-$products=getProductsToDisplay();
+    include_once('admin_defaults/admin_head.php');
+    include_once ('admin_defaults/admin_menu.php');
+
 ?>
 <body>
+<main class='container'>
 <?php
+include_once ('admin_defaults/admin_header.php');
 include_once('admin_defaults/admin_menu.php');
 ?>
-<main class='container'>
     <div class='p-4 p-md-5 mb-4 text-white rounded '>
         <div class='col-md-12 px-0'>
-            <h1 class='display-4 fst-italic text-danger text-center'>Beheer</h1>
+            <h1 class='display-4 fst-italic text-warning text-center'>Beheer</h1>
         </div>
     </div>
     <div class="row">

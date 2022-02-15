@@ -13,13 +13,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="../admin_home">Mijn Profiel</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../admin_products">Producten</a>
-                </li>
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../home">Logout</a>
+                    <a class="nav-link" href="../../login">Logout</a>
                 </li>
             </ul>
         </div>

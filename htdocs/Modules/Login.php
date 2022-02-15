@@ -6,8 +6,7 @@ function checkLogin():string
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $password = filter_input(INPUT_POST,'password');
 
-    if($email!==null && $email!==false && !empty($password))
-    {
+    if($email!==null && $email!==false && !empty($password)) {
         $sql = 'SELECT * FROM user WHERE email = :e AND password = :p';
         $sth = $pdo->prepare($sql);
         $sth->bindParam(':e',$email);
@@ -16,18 +15,15 @@ function checkLogin():string
         $sth->execute();
         $user = $sth->fetch();
 
-        if ($user!==false)
-        {
-            $_SESSION['user']=$user;
-            if ($_SESSION['user']->role=="admin")
-            {
+        if ($user!==false) {
+            $_SESSION['user'] = $user;
+            if ($_SESSION['user']->role=="admin") {
                 return 'ADMIN';
-            }
-            else
-            {
+            } else {
                 return 'MEMBER';
             }
         }
+
         return 'FAILURE';
     }
     return 'INCOMPLETE';
