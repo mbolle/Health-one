@@ -18,7 +18,7 @@ include_once('admin_defaults/admin_menu.php');
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="addproduct.php"><button class="btn btn-outline-warning text-dark btn-lg">Add</button></a>
+            <a href="/admin/addproduct"><button class="btn btn-outline-warning text-dark btn-lg">Add</button></a>
         </div>
     </div>
     <br>
@@ -32,34 +32,27 @@ include_once('admin_defaults/admin_menu.php');
         </tr>
         <tbody>
         <!--        loop vanaf hier-->
-        <?php
-        foreach ($products as $product){
-            echo"
+        <?php $count = 1;?>
+        <?php foreach ($products as $product): ?>
             <tr>
+                <th scope="row"><?=$count++?></th>
             <td>
-<!--                hier moet de image van de item-->
-                <img class='w-25 h-25' src='$product->picture' alt='placeholder'>
+                <img class='w-25 h-25' src="$product->picture" alt="placeholder">
             </td>
-            <td>
-<!--                hier moet de naam van het product-->
-                <p>$product->name</p>
-            </td>
-            <td>
-<!--                hier moert de prijs van het product-->
-                <p>$product->category_name</p>
-            </td>
+            <td><?=$product->name?></td>
+            <td><?=getCategoryName($product->category_id)?></td>
             <td>
 <!--                hier komt de button om te editen-->
-                <a href='updateProduct.php/$product->id'><button class='btn btn-outline-primary'>Update</button></a>
+                <a href="/admin/updateProduct/<?=$product->id?>"><button class="btn btn-outline-warning">Update</button></a>
             </td>
             <td>
 <!--                hier komt de button om het product te deleten-->
-                <a href='deleteProduct.php/$product->id'><button class='btn btn-outline-danger'>Delete</button></a>
+                <a href="/admin/deleteProduct/<?=$product->id?>"><button class="btn btn-outline-danger">Delete</button></a>
             </td>
            </tr>";
         }
-        ?>
-        <!--        loop eindigt hier-->
+        <?php endforeach;?>
+
         </tbody>
     </table>
 

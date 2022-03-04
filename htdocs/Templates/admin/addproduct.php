@@ -12,26 +12,31 @@ $categories=getCategories();
 include_once ('admin_defaults/admin_header.php');
 include_once ('admin_defaults/admin_menu.php');
 ?>
-
-    <h1 class="text-primary">Product toevoegen</h1>
-    <form method="post">
-        <label>Naam:</label><br>
-        <input name="product-name" type="text" placeholder="Naam product"><br>
-        <label>Categorie</label><br>
-        <select name="category" class="form-select" style="width: 25% !important; text-align: center !important; margin-left: 500px;">
-            <option value="">Categorie naam</option>
-            <?php
-            foreach ($categories as $category){
-                echo "<option value='$category->id'>$category->name</option>";
-            }
-            ?>
-            <br>
-        </select>
-        <label>Descriptie</label><br><br>
-        <textarea name="description" id="" cols="30" rows="5" placeholder="Zet hier de descriptie"></textarea><br><br>
-        <input type="file" class="btn btn-lg btn-block  " name="picture"><br>
-        <button class="btn btn-lg btn-outline-warning btn-block white"<input name="submit" type="submit"">Uploaden</button>
-
+    <form class="row g-3" method="post" enctype="multipart/form-data">
+        <div class="col-md-6">
+            <label for="inputName" class="form-label">Naam</label>
+            <input type="text" class="form-control" id="inputName" name="name" value='<?php if (isset($_POST['name'])) {echo $_POST['name'];} else {echo "";} ?>'>
+        </div>
+        <div class="col-md-6">
+            <label for="cat" class="form-label">Category</label>
+            <select class="form-select" id="cat" name="category">
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= $category->id?>"><?=$category->name?></option>
+                <?php endforeach;?>
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="name" class="col-form-label">Beschrijving:</label>
+            <textarea class="form-control" id="name" name="description"><?php if (isset($_POST['description'])) {echo $_POST['description'];} else {echo "";} ?>
+            </textarea>
+        </div>
+        <div class="col-12">
+            <label for="formFile" class="form-label">Image bij sportapparaat </label>
+            <input class="form-control" name="fileToUpload" type="file" id="formFile">
+        </div>
+        <div class="col-12">
+            <button type="submit" name="submit" class="btn btn-primary">Add</button>
+        </div>
     </form>
 </main>
 <?php

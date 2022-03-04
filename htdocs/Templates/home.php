@@ -25,7 +25,7 @@
                                 <div class="carousel-caption text-start">
                                     <h1>Welkom bij Health One.</h1>
                                     <p>Opzoek naar een sportschool? Dan bent u hier goed. Meld u vandaag nog aan.</p>
-                                    <p><a class="btn btn-lg btn-warning" href="registreren.php">Word vandaag nog lid!</a></p>
+                                    <p><a class="btn btn-lg btn-warning" href="register.php">Word vandaag nog lid!</a></p>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                             <div class="container">
                                 <div class="carousel-caption">
                                     <h1>Voor bestaande leden.</h1>
-                                    <p><a class="btn btn-lg btn-warning" href="login.php">Login</a></p>
+                                    <p><a class="btn btn-lg btn-warning" href="login">Login</a></p>
                                 </div>
                             </div>
                         </div>

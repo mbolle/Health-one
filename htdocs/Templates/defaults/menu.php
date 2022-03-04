@@ -21,12 +21,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/products">Beheer producten</a>
                     </li>
-                <?php } else { ?>
+               <?php } else { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/categories">sportapparaat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="#">registreren</a>
+                        <a class="nav-link"  href="/registreren">registreren</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">contact</a>

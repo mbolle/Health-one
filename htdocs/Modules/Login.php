@@ -29,24 +29,22 @@ function checkLogin():string
     return 'INCOMPLETE';
 }
 
-function isAdmin():bool
+
+function isMember():bool
 {
-    if(isset($_SESSION['user'])&&!empty($_SESSION['user']))
-    {
-        $user=$_SESSION['user'];
-        if ($user->role == "admin")
-        {
+    if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+        if ($user->role == "member") {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
     return false;
 }
 
-function getUser($email,$password){
+
+    function getUser($email,$password){
     try{
         global $pdo;
         $query=$pdo->prepare('SELECT * FROM user WHERE email=:email AND password=:password');

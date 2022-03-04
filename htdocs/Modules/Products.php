@@ -28,10 +28,7 @@ function getProduct(int $productId)
 function getProductsToDisplay(){
     try{
         global $pdo;
-        $query=$pdo->prepare('SELECT product.* , category.name AS category_name 
-                                                         FROM product
-                                                         JOIN category
-                                                         ON product.category_id=category.id');
+        $query=$pdo->prepare("SELECT product.* , category.name AS category_name FROM product JOIN category ON product.category_id=category.id");
         $query->execute();
         $products=$query->fetchAll(PDO::FETCH_CLASS);
 
@@ -42,55 +39,52 @@ function getProductsToDisplay(){
     }
 }
 
-function addProduct($name,$categoryId,$ingredients,$description,$picture,$price){
-    try{
-        global $pdo;
-        $query=$pdo->prepare('INSERT INTO product (name , category_id , ingredients,description, picture ,price) VALUES (:name,:category_id,:ingredients,:description,:picture,:price)');
-        $query->bindParam('name',$name);
-        $query->bindParam('category_id',$categoryId);
-        $query->bindParam('ingredients',$ingredients);
-        $query->bindParam('description',$description);
-        $query->bindParam('picture',$picture);
-        $query->bindParam('price',$price);
-
-        $query->execute();
-    }
-    catch (PDOException $e){
-        echo $e->getMessage();
-    }
+function getCategorie():array
+{
+    global $pdo;
+    $categorie = $pdo->query('SELECT * FROM category')->fetchAll(PDO::FETCH_CLASS, 'Category');
+    return $categorie;
 }
 
-function removeProduct($id){
-    try{
-        global $pdo;
-        $query=$pdo->prepare('DELETE FROM product WHERE id = :id');
-        $query->bindParam('id',$id);
-        $query->execute();
-    }
-    catch (PDOException $e){
-        echo $e->getMessage();
-    }
+function isPost()
+{
+    if( (isset($_POST['name'])) && (!empty($_POST['name'])) &&
+        (isset($_POST['category'])) && (!empty($_POST['category'])) &&
+        (isset($_POST['description'])) && (!empty($_POST['description'])) &&
+        (isset($_FILES['fileToUpload']['tmp_name'])) && (!empty($_FILES['fileToUpload']['tmp_name'])) )
+    {
+        return true;
+    } else
+        return false;
 }
 
-function updateProduct($newName,$newCategoryId,$newIngredients,$newDescription,$newPrice,$id){
-    try{
-        global $pdo;
-        $query=$pdo->prepare('UPDATE product SET
-                                                         name=:name,
-                                                         category_id=:category_id,
-                                                         ingredients=:ingredients,
-                                                         description=:description,
-                                                         price=:price
-                                                         WHERE id=:id');
-        $query->bindParam('name',$newName);
-        $query->bindParam('category_id',$newCategoryId);
-        $query->bindParam('ingredients',$newIngredients);
-        $query->bindParam('description',$newDescription);
-        $query->bindParam('price',$newPrice);
-        $query->bindParam('id',$id);
-        $query->execute();
+function fileupload()
+{
+    global $message;
+
+    $allowed = ['gif','png','jpg'];
+    $filename = $_FILES['fileToUpload']['name'];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    if (!in_array($ext,$allowed) || exif_imagetype($_FILES['fileToUpload']['tmp_name']) === false) {
+        $message = "Sorry allen gif,png of jpg files toegestaan";
+        return false;
     }
-    catch(PDOException $e){
-        echo $e->getMessage();
+    $target_dir = "img/categories/". strtolower(getCategoryName((int)$_POST['category'])) ."/";
+    $target_file = $_FILES["fileToUpload"]["name"];
+    do {
+        $target_file = $target_dir.md5($target_file).".$ext";
+    } while (file_exists($target_file));
+
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        $message = "Sorry, je bestand is te groot.";
+        return false;
+    }
+
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+        return true;
+    } else {
+        $message = "Sorry, er was een probleem tijdens het uploaden van je bestand.";
+        return false;
     }
 }

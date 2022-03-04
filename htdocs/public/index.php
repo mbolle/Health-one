@@ -6,6 +6,7 @@ require '../Modules/Login.php';
 require '../Modules/Logout.php';
 require '../Modules/Database.php';
 require '../Modules/Contact.php';
+require '../Modules/Register.php';
 
 session_start();
 $request = $_SERVER['REQUEST_URI'];
@@ -60,6 +61,10 @@ switch ($params[1]) {
         include_once ('admin.php');
         break;
 
+    case 'member':
+        include_once ('member.php');
+        break;
+
     case 'login':
         if (isset($logedInUser)) {
             header("Location: /admin");
@@ -81,13 +86,38 @@ switch ($params[1]) {
                     $message = "Formulier niet volledig ingevuld!";
                     include_once "../Templates/login.php";
                     break;
+                case 'Logout':
+                    session_destroy();
+                    header("Location: /home");
             }
         }
         else {
             include_once "../Templates/login.php";
         }
-        if (isset($_POST['user'])){
-            session_destroy();
+        break;
+
+    case 'register':
+        $titleSuffix = ' | register';
+
+        if (isset($_POST['register'])) {
+
+            $result = makeRegistration();
+            switch ($result) {
+                case 'SUCCES':
+                    header("Location: /home");
+                    break;
+                case 'INCOMPLETE':
+                    $message = "Niet alle velden zijn correct ingevuld";
+                    include_once "../Templates/register.php";
+                    break;
+                case 'EXIST':
+                    $message = "Gebruiker bestaat al";
+                    include_once "../Templates/register.php";
+                    break;
+            }
+        }
+        else {
+            include_once "../Templates/register.php";
         }
         break;
 

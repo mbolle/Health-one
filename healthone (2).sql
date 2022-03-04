@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 jan 2022 om 12:18
+-- Gegenereerd op: 04 mrt 2022 om 13:48
 -- Serverversie: 10.4.21-MariaDB
 -- PHP-versie: 8.0.10
 
@@ -131,6 +131,28 @@ INSERT INTO `time` (`opening_time`, `day`, `id`, `closing_time`) VALUES
 ('08:00:00', 'Zaterdag', 6, '17:00:00'),
 ('08:00:00', 'Zondag', 7, '13:00:00');
 
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `role` enum('member','admin','','') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `password`, `first_name`, `last_name`, `role`) VALUES
+(1, 'MelanieBolle@hotmail.com', '1234', 'Melanie', 'Bolle', 'admin');
+
 --
 -- Indexen voor geëxporteerde tabellen
 --
@@ -162,6 +184,12 @@ ALTER TABLE `time`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexen voor tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -188,6 +216,12 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `time`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT voor een tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
