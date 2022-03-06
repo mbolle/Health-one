@@ -37,17 +37,17 @@ include_once('admin_defaults/admin_menu.php');
             <tr>
                 <th scope="row"><?=$count++?></th>
             <td>
-                <img class='w-25 h-25' src="$product->picture" alt="placeholder">
+                <img class='w-25 h-25' src="<?=$product->picture?>" alt="placeholder">
             </td>
             <td><?=$product->name?></td>
             <td><?=getCategoryName($product->category_id)?></td>
             <td>
 <!--                hier komt de button om te editen-->
-                <a href="/admin/updateProduct/<?=$product->id?>"><button class="btn btn-outline-warning">Update</button></a>
+                <a href="updateProduct/<?=$product->id?>"><button class="btn btn-outline-warning">Update</button></a>
             </td>
             <td>
 <!--                hier komt de button om het product te deleten-->
-                <a href="/admin/deleteProduct/<?=$product->id?>"><button class="btn btn-outline-danger">Delete</button></a>
+                <a href="deleteProduct/<?=$product->id?>"><button class="btn btn-outline-danger">Delete</button></a>
             </td>
            </tr>";
         }

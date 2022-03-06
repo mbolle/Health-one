@@ -43,23 +43,6 @@ function isMember():bool
     return false;
 }
 
-
-    function getUser($email,$password){
-    try{
-        global $pdo;
-        $query=$pdo->prepare('SELECT * FROM user WHERE email=:email AND password=:password');
-        $query->bindParam('email',$email);
-        $query->bindParam('password',$password);
-        $query->execute();
-        $user=$query->fetchAll(PDO::FETCH_CLASS);
-
-        return $user;
-    }
-    catch (PDOException $e){
-        echo $e->getMessage();
-    }
-}
-
 function changePassword($id,$newPassword){
     try{
         global $pdo;

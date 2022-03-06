@@ -86,14 +86,20 @@ switch ($params[1]) {
                     $message = "Formulier niet volledig ingevuld!";
                     include_once "../Templates/login.php";
                     break;
-                case 'Logout':
-                    session_destroy();
-                    header("Location: /home");
             }
         }
         else {
             include_once "../Templates/login.php";
         }
+        break;
+
+    case 'Logout':
+        session_destroy();
+        unset($_SESSION["id"]);
+        unset($_SESSION["email"]);
+        unset($_SESSION["first_name"]);
+        unset($_SESSION["last_name)"]);
+        header("Location: /home");
         break;
 
     case 'register':

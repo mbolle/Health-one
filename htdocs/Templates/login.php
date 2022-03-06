@@ -34,6 +34,10 @@ include_once('defaults/head.php');
     <button type="submit" name="login" class="btn btn-warning">Submit</button>
 </form><?php endif; ?>
 
+       <?php
+
+       ?>
+
 <?php
 include_once ('defaults/footer.php');
 ?>

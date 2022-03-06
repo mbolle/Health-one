@@ -11,7 +11,10 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="../member_home">Mijn Profiel</a>
+                    <a class="nav-link active" href="../member_home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="../member_profile">Profiel</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
